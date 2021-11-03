@@ -1,0 +1,29 @@
+.Alive {
+  background-color: aquamarine;
+  color: black;
+}
+.unknown {
+  background-color: blueviolet;
+}
+.Dead {
+  background-color: cornflowerblue;
+}
+.char__card {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  min-width: 250px;
+}
+.char__card img {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border: 4px solid gold;
+  border-radius: 4px;
+}
+@media only screen and (min-width: 600px) {
+  .char__card {
+    width: 20vw;
+  }
+}
