@@ -6,20 +6,22 @@ function App() {
   const [characterList, setCharacterList] = useState([]);
   const [next, setNext] = useState(0);
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/?page=${next + 1}`)
+    fetch(`https://rickandmortyapi.com/api/character/?page=${next}`)
       .then((res) => res.json())
-      .then((res) => {
-        setCharacterList([...characterList, ...res.results]);
-        if (res.info.next !== null) {
-          setNext(next + 1);
-        }
-      })
+      .then((res) => setCharacterList(res.results))
       .catch((error) => console.error(error));
   }, [next]);
-  console.log(characterList);
+  const handleNext = () => {
+    next !== null && setNext(next + 1);
+  };
+  const handleBack = () => {
+    next >= 0 && setNext(next - 1);
+  };
   return (
     <div className="App">
       <header className="App-header">
+        <button onClick={handleNext}>Avançar</button>
+        <button onClick={handleBack}>Voltar</button>
         <Characters characterList={characterList} />
       </header>
     </div>
