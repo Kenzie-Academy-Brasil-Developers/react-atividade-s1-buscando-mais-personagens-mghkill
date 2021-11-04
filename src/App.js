@@ -4,7 +4,7 @@ import Characters from "./components/Characters";
 
 function App() {
   const [characterList, setCharacterList] = useState([]);
-  const [next, setNext] = useState(0);
+  const [next, setNext] = useState(1);
   useEffect(() => {
     fetch(`https://rickandmortyapi.com/api/character/?page=${next}`)
       .then((res) => res.json())
@@ -15,14 +15,16 @@ function App() {
     next !== null && setNext(next + 1);
   };
   const handleBack = () => {
-    next >= 0 && setNext(next - 1);
+    next >= 2 && setNext(next - 1);
   };
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={handleNext}>Avançar</button>
-        <button onClick={handleBack}>Voltar</button>
-        <Characters characterList={characterList} />
+        <Characters
+          characterList={characterList}
+          handleNext={handleNext}
+          handleBack={handleBack}
+        />
       </header>
     </div>
   );
